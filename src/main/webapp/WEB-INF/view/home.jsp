@@ -38,7 +38,7 @@
     	if(user_id != '') {
     		user_id ="/"  + user_id; 
     	
-    	URL = "http://localhost:8080/api/cartdata" + user_id
+    	URL = "https://family01.herokuapp.com/api/cartdata" + user_id
         	 $.ajax({
     	        url: URL
     	    }).then(function(result) {
