@@ -10,6 +10,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Askbootstrap">
 <meta name="author" content="Askbootstrap">
+	<meta name="google-site-verification" content="M_dsh8n-6iwqNYAwIW_htJ1EemFTlFfvv5zbSuDbTvQ" />
 <title>Groci - Organic Food & Grocery Market Template</title>
 
 <link rel="icon" type="image/png" href="/img/favicon.png">
