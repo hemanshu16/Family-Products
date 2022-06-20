@@ -69,9 +69,10 @@ public class MainController {
 	@RequestMapping(value = "UpdateCustomerrProfile", method = RequestMethod.POST)
 	public String UpdateCustomerrProfile(@RequestParam("image") MultipartFile file, String firstname,
 			@RequestParam("lastname") String lastname, @RequestParam("number") String number,
-			@RequestParam("email") String email, HttpServletRequest request) throws IOException {
+			@RequestParam("email") String email, HttpServletRequest request, Model model) throws IOException {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
+			model.addAttribute("notlogin", 1);
 			return "home";
 		}
 		String id = session.getAttribute("id").toString();
@@ -118,7 +119,7 @@ public class MainController {
 
 	@RequestMapping(value = "Login", method = RequestMethod.POST)
 	public String Login(@RequestParam("email") String email, @RequestParam("password") String password,
-			HttpServletRequest request) {
+			HttpServletRequest request,  Model model) {
 		if (email.equals("admin@gmail.com") && password.equals("admin")) {
 			return "redirect:AdminPage";
 		}
@@ -133,7 +134,8 @@ public class MainController {
 			session.setMaxInactiveInterval(10 * 60);
 			return "redirect:my-profile";
 		}
-
+                model.addAttribute("notlogin", 2);
+		
 		return "home";
 	}
 
@@ -170,10 +172,11 @@ public class MainController {
 	}
 
 	@RequestMapping("cart/update")
-	public String remove_product(HttpServletRequest request, String quan, String product_id) {
+	public String remove_product(HttpServletRequest request, String quan, String product_id, Model model) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
-			return "redirect:/home";
+			model.addAttribute("notlogin", 1);
+			return "home";
 		}
 		Cart cart = cartService.get_cart((Integer) session.getAttribute("id"), Integer.parseInt(product_id));
 		cart.setProduct_quantity(Integer.parseInt(quan));
@@ -182,9 +185,10 @@ public class MainController {
 	}
 
 	@RequestMapping("cart/remove/{product_id}")
-	public String remove_product(HttpServletRequest request, @PathVariable(value = "product_id") String id) {
+	public String remove_product(HttpServletRequest request, @PathVariable(value = "product_id") String id, Model model) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
+			model.addAttribute("notlogin", 1);
 			return "home";
 		}
 		int customer_id = (Integer) session.getAttribute("id");
@@ -197,6 +201,7 @@ public class MainController {
 	public String cart(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
+			model.addAttribute("notlogin", 1);
 			return "home";
 		}
 
@@ -216,6 +221,7 @@ public class MainController {
 	public String checkout(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
+			model.addAttribute("notlogin", 1);
 			return "home";
 		}
 		int customer_id = (Integer) (session.getAttribute("id"));
@@ -238,6 +244,7 @@ public class MainController {
 	public String myaddress(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
+			model.addAttribute("notlogin", 1);
 			return "home";
 		}
 		int customer_id = (Integer) (session.getAttribute("id"));
@@ -267,6 +274,7 @@ public class MainController {
 			@RequestParam("baddress") String baddress) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
+			model.addAttribute("notlogin", 1);
 			return "home";
 		}
 		int customer_id = (Integer) (session.getAttribute("id"));
@@ -299,6 +307,7 @@ public class MainController {
 	public String orderlist(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
+			model.addAttribute("notlogin", 1);
 			return "home";
 		}
 		List<Order> orders = orderservice.get_orders((Integer) session.getAttribute("id"));
@@ -416,6 +425,7 @@ public class MainController {
 	public String addtocart(String quantity, String id, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
+			model.addAttribute("notlogin", 1);
 			return "home";
 		}
 		int user_id = (int) session.getAttribute("id");
