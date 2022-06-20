@@ -148,7 +148,7 @@ public class MainController {
 	public String myprofile(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
-			model.addAttribute("notlogin", "true");
+			model.addAttribute("notlogin", "1");
 			return "home";
 		}
 		Customer customer = userCrud.get_customer((Integer) session.getAttribute("id"));
