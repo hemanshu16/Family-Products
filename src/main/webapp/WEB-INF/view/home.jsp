@@ -174,7 +174,7 @@
 		</div>
 	</div>
 	<c:if test="${nologin == 1}">
-		<script>alert("First Please Log ! " </script>
+		<script>alert("First Please Log ! "); </script>
                                     </c:if> 
 	<div class="navbar-top pt-2 pb-2">
 		<div class="container">
