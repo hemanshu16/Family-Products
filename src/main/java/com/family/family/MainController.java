@@ -271,7 +271,7 @@ public class MainController {
 			@RequestParam("sstate") String sstate, @RequestParam("saddress") String saddress,
 			@RequestParam("bcountry") String bcountry, @RequestParam("bcity") String bcity,
 			@RequestParam("bpincode") String bpincode, @RequestParam("bstate") String bstate,
-			@RequestParam("baddress") String baddress) {
+			@RequestParam("baddress") String baddress, Model model) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("id") == null) {
 			model.addAttribute("notlogin", 1);
