@@ -2,7 +2,7 @@ package com.family.model;
 
 import java.util.Arrays;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +26,7 @@ public class Product {
 	private int discount;
 	private int quantity;
 	@Lob
+	@Column(name = "image", columnDefinition="bytea")
 	private String image;
 	public Product() {
 		super();
